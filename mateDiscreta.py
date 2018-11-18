@@ -15,6 +15,8 @@ cont7=0
 contcherry=0
 contbomba=0
 #funcion, esta devuelve un 'objeto' random
+print("----------BIENVENIDO----------")
+#aqui explicacion de los resultados..
 def random():
     lista=['bomba',7,'cherry']
     r=choice(lista)
@@ -45,19 +47,30 @@ while(game):
         print("La probabilidad que salga cherry es",(contcherry/10)*100,"%")
         print("La probabilidad que salga 7 es",(cont7/10)*100,"%")
         print("La probabilidad que salga bomba es",(contbomba/10)*100,"%")
+        print("")
+        print("++++++++++Tu estado++++++++++")
         print('dinero actual: ',dinero)
-        print('vidas: ',vida)    
-        tiro=input('presione S para tirar : ')
-        
+        print('vidas: ',vida)
+        print("")
+        tiro=input('presione S para tirar o N para retirarse ')
+        print("")
         if tiro=='s' or tiro=='S':
             p=choice(lista2)
             print("Obtuviste: ",p)
+            print("")
             lista3.append(p)
             cont=cont+1
-        
+        elif tiro=='n' or tiro=='N':
+            print("estoy terminando terminalro dentro de n ")
+            game=False
         else:
+            print("estoy terminando terminalro dentro del else")
             print('por favot ingrese la palabra S si desea tirar ')
-    print(lista3)
+    print("----------RESULTADOS------------")
+    if(len(lista3)==0):
+        print("No obtuviste nada")
+    else:
+        print(lista3)
 
     #algoritmo para verificar si gano 1000, perdio -2 vida o +1 de vida
     pre=0
@@ -71,33 +84,28 @@ while(game):
          elif lista3[i]=='cherry':
              cher=cher+1
     if pre==3:
-        print('GANADOR!!! +1000 dolares')
-        print("Vidas restauradas!")
+        print('GANADOR!!! +1000 dolares y todas las vidas restauradas')
         dinero=dinero+1000
         vida=3
     elif bom==3:
-        print('GAMEOVER -2 vida')
-        vida=vida-2
+        print('GAMEOVER')
+        vida=0
     elif cher==3:
         print('+1 vida')
         vida=vida+1
+    elif cher==2 | pre==2:
+        print("GANADOR! +500")
+        dinero=dinero+500
     else:
         vida=vida-1
         print("-1 vida")
         print('Intentalo de nuevo')
     print('dinero actual: ',dinero)
     print('vidas: ',vida)
-
-    if vida<=0:
-        print("MORISTE")
-        break
-    else:
-        gameoff=input('presione s para continuar o n para retirarse ')
-        if gameoff == 'n':
-            game=False
-            print('juego terminado')
-        else:
-            lista3=[]
-            cont=0
     
+    if vida<=0:
+        break
+    lista3=[]
+    cont=0
+print('juego terminado')
 
